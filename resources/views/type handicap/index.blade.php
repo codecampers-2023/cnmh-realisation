@@ -102,7 +102,8 @@
                     <a href="{{route('typeHandicap.export')}}" class="btn btn-default swalDefaultQuestion">
                         <i class="fas fa-download"></i> Exporter
                     </a>
-                    <a href="{{route('typeHandicap.import')}}" class="btn btn-default swalDefaultQuestion">
+                    <a id="myModal" data-toggle="modal" data-target="#exampleModalLong"
+                        class="btn btn-default swalDefaultQuestion">
                         <i class="fas fa-file-import"></i> Importer
                     </a>
                 </div>
@@ -110,13 +111,34 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-    <form action="{{ route('typeHandicap.import') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file" class="form-control">
-        <br>
-        <button class="btn btn-success">Import User Data</button>
-    </form>
 </div>
+
+<!-- Modal Import -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Importer </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('typeHandicap.import') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file" class="form-control">
+                    <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success">Importer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- end Model --}}
 
 <!-- /.control-sidebar -->
 <script src="{{asset('https://code.jquery.com/jquery-3.6.4.js')}}"
@@ -124,6 +146,11 @@
 <script>
     $(document).ready(function () {
         //   alert("eee")
+    })
+
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
     })
 
 </script>
