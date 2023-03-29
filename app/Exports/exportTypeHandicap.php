@@ -12,7 +12,7 @@ class exportTypeHandicap implements FromCollection
     */
     public function collection()
     {
-        return type_handicap::select("nom","description")->get();
+        return type_handicap::all();
     }
 
     /**
@@ -20,8 +20,5 @@ class exportTypeHandicap implements FromCollection
      *
      * @return response()
      */
-    public function headings(): array
-    {
-        return ["nom","description"];
-    }
+
 }

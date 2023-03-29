@@ -110,13 +110,16 @@ class type_handicapController extends Controller
         return "searsh";
 
     }
+    
+    public function export()
+    {
+        return Excel::download(new exportTypeHandicap, 'type-handicap.xlsx');
+    }
+
+
     public function import(Request $request)
     {
         Excel::import(new importTypeHandicap,$request->file);
         return back();
-    }
-    public function export()
-    {
-        return Excel::download(new exportTypeHandicap, 'type-handicap.xlsx');
     }
 }
