@@ -99,18 +99,25 @@
             <div class="under-table">
                 {!! $type_handicap->links() !!}
                 <div class="">
-                    <button type="button" class="btn btn-default swalDefaultQuestion">
+                    <a href="{{route('typeHandicap.export')}}" class="btn btn-default swalDefaultQuestion">
                         <i class="fas fa-download"></i> Exporter
-                    </button>
-                    <button type="button" class="btn btn-default swalDefaultQuestion">
+                    </a>
+                    <a href="{{route('typeHandicap.import')}}" class="btn btn-default swalDefaultQuestion">
                         <i class="fas fa-file-import"></i> Importer
-                    </button>
+                    </a>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    <form action="{{ route('typeHandicap.import') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" class="form-control">
+        <br>
+        <button class="btn btn-success">Import User Data</button>
+    </form>
 </div>
+
 <!-- /.control-sidebar -->
 <script src="{{asset('https://code.jquery.com/jquery-3.6.4.js')}}"
     integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>

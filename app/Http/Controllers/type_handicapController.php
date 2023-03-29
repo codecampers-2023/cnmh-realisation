@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\exportTypeHandicap;
+use App\Imports\importTypeHandicap;
 use App\Models\type_handicap;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class type_handicapController extends Controller
 {
@@ -106,5 +109,14 @@ class type_handicapController extends Controller
     public function liveSearsh(){
         return "searsh";
 
+    }
+    public function import(Request $request)
+    {
+        Excel::import(new importTypeHandicap,$request->file);
+        return back();
+    }
+    public function export()
+    {
+        return Excel::download(new exportTypeHandicap, 'type-handicap.xlsx');
     }
 }
