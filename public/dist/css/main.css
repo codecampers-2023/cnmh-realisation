@@ -7,3 +7,20 @@
     cursor: pointer;
     outline: inherit;
 }
+.th-center{
+    display: flex;
+     align-items: center;
+    justify-content: center;
+}
+.filter{
+    border-radius: 0.3rem;
+    /* width: 150px; */
+}
+.under-table{
+    display: flex;  justify-content: space-between;
+
+}
+.card-create{
+  width: 750px;
+}
+

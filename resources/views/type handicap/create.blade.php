@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Ajouter</h1>
+            <h1 class="m-0"></h1>
           </div><!-- /.col -->
 
         </div><!-- /.row -->
@@ -23,11 +23,11 @@
         <!-- Small boxes (Stat box) -->
 
 
-        <div class="col-md-6">
+        <div class="col-md-12 d-flex justify-content-center">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-primary  card-create">
               <div class="card-header">
-                {{-- <h3 class="card-title">Quick Example</h3> --}}
+                <h3 class="card-title">Ajouter Type handicap </h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
