@@ -110,7 +110,7 @@ class type_handicapController extends Controller
         return "searsh";
 
     }
-    
+
     public function export()
     {
         return Excel::download(new exportTypeHandicap, 'type-handicap.xlsx');
