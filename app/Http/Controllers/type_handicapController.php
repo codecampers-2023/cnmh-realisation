@@ -106,9 +106,18 @@ class type_handicapController extends Controller
         return redirect('typeHandicap');
     }
 
-    public function liveSearsh(){
-        return "searsh";
-
+    public function liveSearsh(Request $request){
+        $data = type_handicap::where('nom',"like",$request->search_string."%")
+        ->orderBy('id','desc')
+        ->paginate(1);
+        if($data->count() >=1){
+            return view("paginate_table",compact("data"))->render();
+        }
+        else{
+            return response ()->json([
+            'status' => 'nothing_found',
+            ]);
+        }
     }
 
     public function export()
@@ -122,4 +131,10 @@ class type_handicapController extends Controller
         Excel::import(new importTypeHandicap,$request->file);
         return back();
     }
+
+    public function paginate(Request $request){
+        $type_handicap = type_handicap::paginate(1);
+        return view('type handicap.paginate_table',compact('type_handicap'))->render();
+    }
+
 }

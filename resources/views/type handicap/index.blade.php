@@ -32,7 +32,7 @@
                         <form class="form-inline ml-3">
                             <div class="input-group input-group-sm">
 
-                                <input type="search" class="form-control form-control-lg"
+                                <input type="search" id="search" class="form-control form-control-lg"
                                     placeholder="Type your keywords here">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
@@ -45,8 +45,7 @@
 
                     </div>
                 </div>
-
-                <div class="card-body p-0">
+                <div class="card-body p-0 table-data">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -144,11 +143,33 @@
 <script src="{{asset('https://code.jquery.com/jquery-3.6.4.js')}}"
     integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function () {
-        //   alert("eee")
+
+
+
+
+
+    // paginate file
+
+    //pagination
+    $(document).on("click", 'pagination a', function(e) {
+        e.preventDefault();
+        let page = $(this).attr('href').split('page=')[1]
+        product(page)
     })
 
+    function product(page) {
+        $.ajax({
+            url: "typeHandicap-paginate?page=" + page,
+            success: function (res) {
+                $('.table-data').html(res);
+                I
+            }
+        })
+    }
 
+
+
+    // model
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })
