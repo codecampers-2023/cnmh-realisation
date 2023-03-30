@@ -7,6 +7,7 @@ use App\Imports\importTypeHandicap;
 use App\Models\type_handicap;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class type_handicapController extends Controller
 {
@@ -17,8 +18,8 @@ class type_handicapController extends Controller
      */
     public function index()
     {
-        $type_handicap = type_handicap::paginate(1);
-        return view('type handicap.index',compact('type_handicap'));
+        $data = type_handicap::paginate(2);
+        return view('type handicap.index',compact('data'));
     }
 
     /**
@@ -106,18 +107,19 @@ class type_handicapController extends Controller
         return redirect('typeHandicap');
     }
 
-    public function liveSearsh(Request $request){
-        $data = type_handicap::where('nom',"like",$request->search_string."%")
-        ->orderBy('id','desc')
-        ->paginate(1);
-        if($data->count() >=1){
-            return view("paginate_table",compact("data"))->render();
-        }
-        else{
-            return response ()->json([
-            'status' => 'nothing_found',
-            ]);
-        }
+  
+    function fetch_data(Request $request)
+    {
+     if($request->ajax())
+     {
+        $query = $request->get('query');
+      $data = DB::table('type_handicaps')
+                    ->where('nom', 'like', '%'.$query.'%')
+                    // ->orWhere('Nom_tache', 'like', '%'.$query.'%')
+                    ->paginate(2);
+                    // dd($data);
+      return view('type handicap.paginate_table', compact('data'))->render();
+     }
     }
 
     public function export()
@@ -132,9 +134,6 @@ class type_handicapController extends Controller
         return back();
     }
 
-    public function paginate(Request $request){
-        $type_handicap = type_handicap::paginate(1);
-        return view('type handicap.paginate_table',compact('type_handicap'))->render();
-    }
+    
 
 }

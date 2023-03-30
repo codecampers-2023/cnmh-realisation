@@ -32,14 +32,7 @@
                         <form class="form-inline ml-3">
                             <div class="input-group input-group-sm">
 
-                                <input type="search" id="search" class="form-control form-control-lg"
-                                    placeholder="Type your keywords here">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-
-                                </div>
+                                <input type="text" class="form-control" name="serach" id="serach" placeholder="Search&hellip;">
                             </div>
                         </form>
 
@@ -55,48 +48,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($type_handicap as $value )
-
-                            <tr>
-                                <td>{{$value->id}} </td>
-                                <td>{{$value->nom}} </td>
-                                <td>{{$value->description}} </td>
-
-
-
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="{{route('typeHandicap.show',$value->id)}}">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        Afficher
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="{{route('typeHandicap.edit',$value->id)}}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Modifier
-                                    </a>
-                                    <form class style="display: contents"
-                                        action="{{route('typeHandicap.destroy',$value->id)}}" method="post">
-                                        @csrf
-                                        @method("DELETE")
-                                        <button class="btn btn-danger btn-sm" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Supprimer
-                                        </button>
-                                    </form>
-
-
-                                </td>
-                            </tr>
-                            @endforeach
+                            @include("type handicap.paginate_table")
 
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
+            <input type="text" name="hidden_page" id="hidden_page" value="1" />
             <div class="under-table">
-                {!! $type_handicap->links() !!}
                 <div class="">
                     <a href="{{route('typeHandicap.export')}}" class="btn btn-default swalDefaultQuestion">
                         <i class="fas fa-download"></i> Exporter
@@ -140,35 +100,43 @@
 {{-- end Model --}}
 
 <!-- /.control-sidebar -->
-<script src="{{asset('https://code.jquery.com/jquery-3.6.4.js')}}"
-    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
+$(document).ready(function(){
+function fetch_data(page,query)
+{
+$.ajax({
+ url:"/pagination/fetch_data?page="+page+"&query="+query,
+ success:function(data)
+ {
+  // console.log(data);
+  $('tbody').html('');
+  $('tbody').html(data);
+ }
+})
+}
+
+$(document).on('keyup', '#serach', function(){
+var query = $('#serach').val();
+var page = $('#hidden_page').val();
+fetch_data(page,query);
+
+});
 
 
+$(document).on('click', '.pagination a', function(event){
+event.preventDefault();
+var page = $(this).attr('href').split('page=')[1];
+$('#hidden_page').val(page);
+var query = $('#serach').val();
+console.log(page);
+console.log(query);
+fetch_data(page,query);
+ 
+});
+});
 
-
-
-    // paginate file
-
-    //pagination
-    $(document).on("click", 'pagination a', function(e) {
-        e.preventDefault();
-        let page = $(this).attr('href').split('page=')[1]
-        product(page)
-    })
-
-    function product(page) {
-        $.ajax({
-            url: "typeHandicap-paginate?page=" + page,
-            success: function (res) {
-                $('.table-data').html(res);
-                I
-            }
-        })
-    }
-
-
-
+    
     // model
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')

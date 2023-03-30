@@ -1,14 +1,5 @@
-<div class="card-body p-0 table-data">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width: 100px">Id</th>
-                <th style="width: 400px">Type handicap</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($type_handicap as $value )
+
+            @foreach ($data as $value )
 
             <tr>
                 <td>{{$value->id}}dd </td>
@@ -43,6 +34,10 @@
                 </td>
             </tr>
             @endforeach
+            <tr>
+                <td>
+                    {!! $data->links() !!}
+                </td>
+            </tr>
 
-        </tbody>
-    </table>
+   
