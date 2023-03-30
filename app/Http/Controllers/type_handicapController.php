@@ -107,7 +107,7 @@ class type_handicapController extends Controller
         return redirect('typeHandicap');
     }
 
-  
+
     function fetch_data(Request $request)
     {
      if($request->ajax())
@@ -134,6 +134,6 @@ class type_handicapController extends Controller
         return back();
     }
 
-    
+
 
 }

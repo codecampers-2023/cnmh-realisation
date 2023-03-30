@@ -34,10 +34,9 @@
                 </td>
             </tr>
             @endforeach
-            <tr>
-                <td>
-                    {!! $data->links() !!}
-                </td>
-            </tr>
 
-   
+{{--
+                @endif
+                    <!--start-pagination--->
+                    {{ $data->links() }}
+                    <!--end-pagination---> --}}

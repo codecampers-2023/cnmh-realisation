@@ -52,11 +52,15 @@
 
                         </tbody>
                     </table>
-                    
+
                 </div>
             </div>
-            <input type="text" name="hidden_page" id="hidden_page" value="1" />
+            <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
             <div class="under-table">
+                <div class="pagination">
+                     <!--start-pagination--->
+                    {{ $data->links() }}
+                </div>
                 <div class="">
                     <a href="{{route('typeHandicap.export')}}" class="btn btn-default swalDefaultQuestion">
                         <i class="fas fa-download"></i> Exporter
@@ -110,9 +114,25 @@ $.ajax({
  success:function(data)
  {
   // console.log(data);
-  $('tbody').html('');
-  $('tbody').html(data);
- }
+
+  let table = "";
+  let pagination = "";
+  let html = data;
+
+  let parts = html.split("<!--start-pagination--->");
+  table = parts[0];
+    pagination = parts[1];
+    parts[0].replace('characterToReplace', '');
+
+
+    console.log(pagination)
+    //   console.log(data)
+      console.log(data)
+    $('tbody').html('');
+    $('tbody').html(table);
+    $('.pagination').html(" ");
+    $('.pagination').html(pagination);
+}
 })
 }
 
@@ -132,11 +152,11 @@ var query = $('#serach').val();
 console.log(page);
 console.log(query);
 fetch_data(page,query);
- 
+
 });
 });
 
-    
+
     // model
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
