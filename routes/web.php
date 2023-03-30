@@ -28,8 +28,8 @@ Route::resource('typeHandicap', type_handicapController::class);
 Route::get('typeHandicap/searsh',[type_handicapController::class,"liveSearsh"])->name("typeHandicap.liveSearsh");
 Route::post('typeHandicap/import',[type_handicapController::class,"import"])->name('typeHandicap.import');
 Route::get('typeHandicap-export',[type_handicapController::class,"export"])->name('typeHandicap.export');
-Route::get('typeHandicap-paginate',[type_handicapController::class,"paginate"])->name('typeHandicap.paginate');
-
+// Route::get('typeHandicap-paginate',[type_handicapController::class,"paginate"])->name('typeHandicap.paginate');
+route::get('/pagination/fetch_data',[type_handicapController::class,'fetch_data'])->name('/pagination/fetch_data');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
