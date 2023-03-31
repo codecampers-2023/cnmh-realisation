@@ -60,7 +60,16 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">ajouter</button>
+
+                    <div class="d-flex">
+                        <div class="p-2">
+                            <button type="submit" class="btn btn-primary">ajouter</button>
+                        </div>
+
+                        <div class="ml-auto p-2">
+                            <a href="{{route('typeHandicap.index')}}" type="submit" class="btn btn-secondary">Anuler</a>
+                        </div>
+                      </div>
                 </div>
               </form>
             </div>

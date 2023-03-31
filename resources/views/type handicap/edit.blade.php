@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Ajouter</h1>
+            <h1 class="m-0"></h1>
           </div><!-- /.col -->
 
         </div><!-- /.row -->
@@ -23,11 +23,11 @@
         <!-- Small boxes (Stat box) -->
 
 
-        <div class="col-md-6">
+        <div class="col-md-12 d-flex justify-content-center" >
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-primary card-create">
               <div class="card-header">
-                {{-- <h3 class="card-title">Quick Example</h3> --}}
+                <h3 class="card-title">Modifier type Handicap</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -60,7 +60,16 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">ajouter</button>
+                    <div class="d-flex">
+                        <div class="p-2">
+                            <button type="submit" class="btn btn-primary">Editer</button>
+                        </div>
+
+                        <div class="ml-auto p-2">
+                            <a href="{{route('typeHandicap.index')}}" type="submit" class="btn btn-secondary">Anuler</a>
+                        </div>
+                      </div>
+
                 </div>
               </form>
             </div>
