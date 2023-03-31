@@ -122,12 +122,12 @@ $.ajax({
   let parts = html.split("<!--start-pagination--->");
   table = parts[0];
     pagination = parts[1];
-    parts[0].replace('characterToReplace', '');
 
 
     console.log(pagination)
+    // console.log(pagination)
     //   console.log(data)
-      console.log(data)
+    //   console.log(data)
     $('tbody').html('');
     $('tbody').html(table);
     $('.pagination').html(" ");

@@ -35,8 +35,16 @@
             </tr>
             @endforeach
 
-{{--
-                @endif
-                    <!--start-pagination--->
-                    {{ $data->links() }}
-                    <!--end-pagination---> --}}
+
+            <div  style="display:none">
+
+
+
+
+
+                
+                <!--start-pagination--->
+                {{ $data->links() }}
+                <!--end-pagination--->
+                </div>
+
