@@ -34,10 +34,17 @@
                 </td>
             </tr>
             @endforeach
-            <tr>
-                <td>
-                    {!! $data->links() !!}
-                </td>
-            </tr>
 
-   
+
+            <div  style="display:none">
+
+
+
+
+
+                
+                <!--start-pagination--->
+                {{ $data->links() }}
+                <!--end-pagination--->
+                </div>
+
