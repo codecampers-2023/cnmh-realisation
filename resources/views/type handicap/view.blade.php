@@ -25,33 +25,37 @@
 
         <div class="col-md-12 d-flex justify-content-center" >
             <!-- general form elements -->
-            <div class="card card-warning card-create">
+            <div class="card card-secondary card-create">
               <div class="card-header">
-                <h3 class="card-title">Modifier type Handicap</h3>
+                <h3 class="card-title">Afficher type Handicap</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('typeHandicap.update',$type_handicap->id)}}" method="post"  enctype="multipart/form-data">
-                @csrf
-                @method("PUT")
+              <form  method="post"  enctype="multipart/form-data">
+
                 <div class="card-body">
-                  <div class="form-group">
-                      <label for="exampleInputEmail1">type handicap</label>
-                      <input type="text" class="form-control" value="{{$type_handicap->nom}}" id="exampleInputEmail1" name="type_handicap">
-                      <div style="color:red">
-                          @error("type_handicap")
-                          {{$message}}
-                          @enderror
-                          </div>
+
+                  <div class="card card-secondary card-outline">
+                    <div class="card-header">
+                      <h5 class="card-title m-0">type handicap</h5>
+                    </div>
+                    <div class="card-body">
+
+
+                      <p class="card-text">{{$type_handicap->nom}}</p>
+
+                    </div>
                   </div>
-                  <div class="form-group">
-                      <label for="exampleInputEmail1">description</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" value="{{$type_handicap->description}}"  name="description" placeholder="Enter discription">
-                      <div style="color:red">
-                        @error("description")
-                        {{$message}}
-                        @enderror
-                        </div>
+                  <div class="card card-secondary card-outline">
+                    <div class="card-header">
+                      <h5 class="card-title m-0">Description</h5>
+                    </div>
+                    <div class="card-body">
+
+
+                      <p class="card-text">{{$type_handicap->description}}</p>
+
+                    </div>
                   </div>
 
 
@@ -62,7 +66,7 @@
                 <div class="card-footer">
                     <div class="d-flex">
                         <div class="p-2">
-                            <button type="submit" class="btn btn-warning">Editer</button>
+                            <a href="{{route('typeHandicap.edit',$type_handicap->id)}}" type="submit" class="btn btn-warning">Editer</a>
                         </div>
 
                         <div class="ml-auto p-2">
