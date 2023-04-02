@@ -59,9 +59,10 @@ class type_handicapController extends Controller
      * @param  \App\Models\type_handicap  $type_handicap
      * @return \Illuminate\Http\Response
      */
-    public function show(type_handicap $type_handicap)
+    public function show($id)
     {
-
+        $type_handicap = type_handicap::find($id);
+        return view('type handicap.view',compact('type_handicap'));
     }
 
     /**
@@ -82,7 +83,7 @@ class type_handicapController extends Controller
      * @param  \App\Models\type_handicap  $type_handicap
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updat (Request $request, $id)
     {
         $validatedData = $request->validate([
             'type_handicap' => 'required|string',
